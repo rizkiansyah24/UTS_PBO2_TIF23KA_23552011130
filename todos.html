@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tugas UTS</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #E3F2FD, #BBDEFB); /* Gradasi biru muda */
+            padding: 40px;
+            margin: 0;
+            color: #333;
+        }
+
+        h1 {
+            color: #1E88E5;
+            font-size: 2.5em;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .filters a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #1E88E5;
+            font-weight: 600;
+        }
+
+        .filters a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #e3f2fd;
+            margin: 15px 0;
+            padding: 15px;
+            border-left: 5px solid #1976D2;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 70%;
+            border-radius: 8px;
+            border: 1px solid #BBDEFB;
+            background-color: #fff;
+            font-size: 1em;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #1E88E5;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1565C0;
+        }
+
+        .edit-button, .complete-button, .delete-button {
+            background-color: #90CAF9;
+            margin-left: 5px;
+            padding: 8px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .complete-button {
+            background-color: #4CAF50;
+        }
+
+        .delete-button {
+            background-color: #F44336;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .top-form {
+            margin-bottom: 20px;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            background-color: #81D4FA;
+            color: #0277BD;
+            padding: 8px 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back-button:hover {
+            background-color: #4FC3F7;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top-bar">
+        <h1 th:text="'Selamat datang ' + ${username} + ' '">Selamat datang!</h1>
+        <a href="/login" class="back-button">← Logout</a>
+    </div>
+
+    <div class="filters">
+        <a href="/todos">Semua</a> |
+        <a href="/todos?filter=incomplete">Belum Selesai</a> |
+        <a href="/todos?filter=completed">Selesai</a>
+    </div>
+
+    <!-- Tambah Tugas Baru -->
+    <form class="top-form" th:action="@{/todos/create}" method="post">
+        <input type="text" name="task" placeholder="Tambah tugas baru" required />
+        <button type="submit">Tambah</button>
+    </form>
+
+    <!-- Daftar Tugas -->
+    <ul>
+        <li th:each="todo : ${todos}">
+            <span th:classappend="${todo.completed} ? 'completed'" th:text="${todo.task}">Contoh tugas</span>
+            <div class="task-actions">
+                <!-- Form Edit -->
+                <form th:action="@{/todos/edit}" method="post">
+                    <input type="hidden" name="id" th:value="${todo.id}" />
+                    <input type="text" name="task" placeholder="Edit tugas️" required />
+                    <button class="edit-button" type="submit">Edit</button>
+                </form>
+
+                <!-- Selesai -->
+                <form th:action="@{/todos/toggle/{id}(id=${todo.id})}" method="post">
+                    <button class="complete-button" type="submit">✓</button>
+                </form>
+
+                <!-- Hapus -->
+                <form th:action="@{/todos/delete/{id}(id=${todo.id})}" method="post">
+                    <button class="delete-button" type="submit">X</button>
+                </form>
+            </div>
+        </li>
+    </ul>
+
+    <div class="footer">
+        Todo App | UTS 2025 | Aldi Rizkiansyah
+    </div>
+</div>
+</body>
+</html>

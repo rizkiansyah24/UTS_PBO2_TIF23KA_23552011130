@@ -1,0 +1,183 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #c8e6c9, #b2ebf2); /* Gradasi hijau ke biru */
+    padding: 30px;
+    color: #333;
+    margin: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: #ffffffcc;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+h1, h2 {
+    color: #388e3c; /* Hijau yang sejuk */
+}
+
+/* Forms */
+input[type="text"], input[type="password"], input[type="hidden"] {
+    padding: 10px;
+    width: 70%;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #81c784; /* Warna hijau lembut */
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #66bb6a;
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #388e3c;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Todo List Styles */
+.filters a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #388e3c;
+    font-weight: bold;
+}
+
+.filters a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #dcedc8;
+    margin: 10px 0;
+    padding: 15px;
+    border-left: 5px solid #66bb6a;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* Task Action Buttons */
+.task-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.edit-button, .complete-button, .delete-button {
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+}
+
+.edit-button {
+    background-color: #aed581;
+}
+
+.complete-button {
+    background-color: #4db6ac;
+}
+
+.delete-button {
+    background-color: #e57373;
+}
+
+button, .edit-button, .complete-button, .delete-button {
+    cursor: pointer;
+}
+
+button:hover, .edit-button:hover, .complete-button:hover, .delete-button:hover {
+    opacity: 0.9;
+}
+
+/* Header and Footer */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.top-bar h1 {
+    color: #388e3c;
+    font-size: 24px;
+}
+
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* Link Button */
+.back-button {
+    background-color: #aed581;
+    color: #33691e;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #81c784;
+}
+
+/* Login and Register Form Layout */
+form {
+    text-align: center;
+}
+
+form input[type="text"], form input[type="password"] {
+    width: 80%;
+}
+
+form button {
+    width: 80%;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    form input[type="text"], form input[type="password"], form button {
+        width: 100%;
+    }
+}
